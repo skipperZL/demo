@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configurations>
+    <!-- 静态字典类型 -->
+	<Configuration name="DatasType">
+		<param name="密级" value="SECURITYLEVER" />
+		<param name="缓级程度" value="PRIORITY" />
+	</Configuration>
+
+	<!-- 基本表单按钮类型 1000~2999为系统保留值-->
+	<Configuration name="FormButtonType">
+		<param name="发送" value="3001" />
+		<param name="发布" value="5002" />
+		<param name="邮件管理发送" value="5004" />
+		<param name="邮件管理保存至草稿箱" value="7001" />
+		<param name="写信返回" value="7002" />
+		<param name="回复返回" value="7003" />
+		<param name="邮件管理回复" value="7004" />
+		<param name="签收" value="3004" />
+		<param name="日程安排返回" value="7005" />
+		<param name="退回" value="3006"/>
+		<param name="取回" value="3007"/>
+		<param name="历史查询" value="3008"/>
+	</Configuration>
+	<Configuration name="FormButtonTypeValue">
+		<param name="3001" value="Send" />
+		<param name="3002" value="retakeBtn" />
+		<param name="3003" value="authorizeBtn" />
+		<param name="5002" value="issue" />
+		<param name="5004" value="fasBtn" />
+		<param name="7001" value="cgxBtn" />
+		<param name="7002" value="fhBtn" />
+		<param name="7003" value="reciveFhBtn" />
+		<param name="7004" value="hfBtn" />
+		<param name="7005" value="racpfh" />
+	</Configuration>
+
+	<!-- 基本列表按钮类型 1000~2000为系统保留值-->
+	<Configuration name="ListButtonType">
+		<param name="发送" value="3005" />
+		<param name="同步" value="4001" />
+		<param name="转移" value="4002"/>
+		<param name="导入" value="6003" />
+		<param name="导出" value="6004" />
+		<param name="清零" value="6005" />
+		<param name="取号" value="6006" />
+		<param name="从用户信息表导入" value="5005" />
+		<param name="同步到用户表" value="5006" />
+		<param name="撤销发布" value="5009" />
+		<param name="发布" value="6008" />
+		<param name="提醒" value="6009" />
+		<param name="已阅" value="6010" />
+	</Configuration>
+	
+	<Configuration name="ListButtonTypeValue">
+		<param name="4001" value="Synchro" />
+		<param name="6003" value="import" />
+		<param name="6004" value="export" />
+		<param name="5005" value="userimport" />
+		<param name="5006" value="updateuser" />
+		<param name="6005" value="clearCode" />
+		<param name="6006" value="fetchCode" />
+		<param name="5009" value="background" />
+		<param name="6008" value="IssueList" />
+		<param name="6010" value="doRead" />
+	</Configuration>
+	
+	<!-- 皮肤定义 -->
+	<Configuration name="SkinType">
+		<param name="meeting" value="default" />
+	</Configuration>
+	
+	<Configuration name="GP_Paramters">
+	</Configuration>
+	
+	<Configuration name="IP_mapping">
+	</Configuration>
+	
+	<Configuration name="Ctx_mapping">
+	   <param name="meeting" value="meeting" />
+	</Configuration>
+	
+	<Configuration name="ehcache_map">
+		<param name="80" value="ehcache.xml"/>
+	</Configuration>
+	
+	<!-- 系统最近一次启动时间，取最大值 -->
+	<Configuration name="Date_initial">
+		<param name="initial" value="20170817"/>
+	</Configuration>
+	
+	<!-- 外界数据源配置 -->	
+	<Configuration name="dataSource">
+	    
+	</Configuration>
+	<Cat id="100">
+		<Home>
+		</Home>
+	</Cat>
+	<Dog id="Dog"></Dog>
+</Configurations>
