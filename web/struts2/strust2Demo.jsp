@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix ="s" uri="/struts-tags"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -21,6 +22,10 @@
 	 -->
 	<s:select name="user.sex" list="#{'0':'男','1':'女'}" label="性别" headerKey="" headerValue="请选择性别"></s:select>
 	<s:select label="用户" name="user" list="userList" listKey="id" listValue="name" />
+	<!-- Date -->
+	<s:date format="yyyy-MM-dd" name="#dateRef.today"/>  
+	<s:date name="#dateRef.today" format="hh:mm:ss" />
+	<s:date name="#dateRef.today" format="HH:mm:ss" />
 	
 
 </body>

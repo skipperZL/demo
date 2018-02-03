@@ -1,7 +1,8 @@
 package com.zl.demo.javase;
 
-import java.util.Calendar;
 import static com.zl.demo.javase.Printer.print;
+
+import java.util.Calendar;
 
 public class CalendarDemo {
 	
