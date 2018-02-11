@@ -1,7 +1,5 @@
 package com.zl.demo;
 
-import static org.junit.Assert.*;
-
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
