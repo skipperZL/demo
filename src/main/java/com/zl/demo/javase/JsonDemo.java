@@ -45,6 +45,9 @@ public class JsonDemo {
         print(JSONArray.fromObject(list, jsonConfig));
 	}
 	
+	/**
+	 * Throught   "JSONString"
+	 * */
 	private void testFilter3() {
         JsonConfig jsonConfig = new JsonConfig();
 		List<JsonDemoTeacher> list = new ArrayList<>();
