@@ -14,7 +14,9 @@
 
 
 
-<%-- <fmt:formatNumber>
+<%-- 
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<fmt:formatNumber>
 使用指定的格式或精度格式化数字
 <fmt:parseNumber>
 解析一个代表着数字，货币或百分比的字符串
@@ -36,6 +38,20 @@
 显示资源配置文件信息
 <fmt:requestEncoding>
 设置request的字符编码 --%>
+
+<%--
+<%@ taglib prefix="c" uri="/WEB-INF/c.tld"%>
+<c:forEach var="item" items="${datas.datas}" varStatus="index">
+	<c:choose>
+	      <c:when test="${index.count mod 2 eq 1}">
+	          <tr>
+	      </c:when>
+	      <c:otherwise>
+	          <tr class="list-tr-odd">
+	      </c:otherwise>
+	</c:choose>
+</c:forEach>
+--%>
 
 </body>
 </html>
