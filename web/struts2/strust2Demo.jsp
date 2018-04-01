@@ -125,7 +125,16 @@
 				</s:else>			
 			</s:iterator>
 			</s:if>	
-		</s:iterator>				
+		</s:iterator>
+		<s:iterator value="datas.datas" status="index">
+			<s:if test="#index.odd == true">
+				<tr>
+			</s:if>
+			<s:else>
+				<tr class="list-tr-odd">
+			</s:else>
+			
+		</s:iterator>
 	</table>
 	<!-- iterator end -->
 	
