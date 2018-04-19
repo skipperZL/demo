@@ -51,6 +51,12 @@
 	      </c:otherwise>
 	</c:choose>
 </c:forEach>
+<c:if test="${fn:length(obj.meetingName) <= 26}">
+	${obj.meetingName}
+</c:if>
+<c:if test="${fn:length(obj.meetingName) > 26}">
+	${fn:substring(obj.meetingName,0,26)} ...
+</c:if>	
 --%>
 
 </body>
