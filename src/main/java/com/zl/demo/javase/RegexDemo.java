@@ -7,7 +7,7 @@ import static com.zl.demo.javase.Printer.print;
 public class RegexDemo {
 	
 	private static void test(String reg, String s) {
-		Pattern p = Pattern.compile(reg);
+		 Pattern p = Pattern.compile(reg);
 		 Matcher m = p.matcher(s);
 		 print(m);
 		 while(m.find()) {
