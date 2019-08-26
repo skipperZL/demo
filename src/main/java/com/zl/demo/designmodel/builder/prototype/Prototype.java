@@ -30,5 +30,6 @@ public abstract class Prototype {
 		this.id = id;
 	}
 
+	@Override
 	public abstract Prototype clone();
 }

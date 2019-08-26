@@ -6,6 +6,7 @@ public class CookCommand extends Command{
 		super(husband);
 	}
 
+	@Override
 	public void excute() {
 		husband.cook();
 	}

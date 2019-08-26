@@ -19,7 +19,7 @@ public class PostConcurrent implements Runnable{
 		try {
 			end.countDown();	
 			start.await();			
-			Http.sendPost(url, "");	
+			Http.sendGet(url, "");	
 			System.out.println(Thread.currentThread().getName() + " Sending...");
 		} catch (InterruptedException e) {
 			e.printStackTrace();

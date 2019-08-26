@@ -13,7 +13,6 @@ import org.apache.poi.xwpf.usermodel.XWPFRun;
 import org.apache.poi.xwpf.usermodel.XWPFTable;
 import org.apache.poi.xwpf.usermodel.XWPFTableCell;
 import org.apache.poi.xwpf.usermodel.XWPFTableRow;
-import org.openxmlformats.schemas.wordprocessingml.x2006.main.CTShd;
 import org.openxmlformats.schemas.wordprocessingml.x2006.main.CTTblWidth;
 import org.openxmlformats.schemas.wordprocessingml.x2006.main.CTTc;
 import org.openxmlformats.schemas.wordprocessingml.x2006.main.CTTcPr;
@@ -33,10 +32,10 @@ public class DataDic2Word {
         XWPFDocument document = null;
         //Write the Document in file system
         FileOutputStream out = null;
-		
+
 		try {
 			document = new XWPFDocument();
-			out = new FileOutputStream(new File(path + "\\" + word.getName() + ".docx"));
+			out = new FileOutputStream(new File(path + "/" + word.getName() + ".docx"));
 	        //添加标题
 	        XWPFParagraph titleParagraph = document.createParagraph();
 	        //设置段落居中
@@ -110,6 +109,7 @@ public class DataDic2Word {
 	        System.out.println("Success.");
 		} catch(IOException e) {
 			System.out.println("IOException!");
+			System.out.println(e);
 		} finally {
 			try {
 				if (out != null)
@@ -145,7 +145,7 @@ public class DataDic2Word {
 			rowTable.removeCell(colIndex);
 		}
 		tcPr.addNewGridSpan();
-		tcPr.getGridSpan().setVal(BigInteger.valueOf((long) (toCol - fromCol + 1)));
+		tcPr.getGridSpan().setVal(BigInteger.valueOf(toCol - fromCol + 1));
 	}
     
     private static CTTcPr getTcPr(XWPFTableCell cell) {
@@ -178,7 +178,6 @@ public class DataDic2Word {
     private static void setCellWidth(XWPFTableCell cell, long width) {
 		CTTc cttc = cell.getCTTc();
 		CTTcPr ctPr = cttc.isSetTcPr() ? cttc.getTcPr() : cttc.addNewTcPr();
-		CTShd ctshd = ctPr.isSetShd() ? ctPr.getShd() : ctPr.addNewShd();
 		ctPr.addNewTcW().setW(BigInteger.valueOf(width));
     }
     

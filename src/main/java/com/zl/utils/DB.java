@@ -9,6 +9,8 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
@@ -204,7 +206,13 @@ public class DB {
 					table.getComments().add(rs.getString("REMARKS"));
 					table.getFieldsLen().add(rs.getInt("COLUMN_SIZE") + "");
 					table.getDigits().add(rs.getInt("DECIMAL_DIGITS") + "");
-					table.getDefaultValues().add(rs.getString("COLUMN_DEF"));
+					try {
+						table.getDefaultValues().add(rs.getString("COLUMN_DEF"));
+					} catch (Exception e) {
+						e.printStackTrace();
+						table.getDefaultValues().add("");
+					}
+					
 					table.getIsNulls().add(rs.getString("IS_NULLABLE"));
 					if (pks.contains(rs.getString("COLUMN_NAME"))) {
 						table.getPks().add("YES");
@@ -227,16 +235,47 @@ public class DB {
 	
 	//其他数据库不需要这个方法 oracle和db2需要
 	private static String getSchema(Connection conn) throws Exception {
+		String user = getExportUser();
+		if (user != null && !"".equals(user)) {
+			return user;
+		}
 		String schema;
 		schema = conn.getMetaData().getUserName();
+		
 		if ((schema == null) || (schema.length() == 0)) {
 			throw new Exception("ORACLE数据库模式不允许为空");
 		}
+		if ("SQLSERVER".equals(getDBType()))
+			return null;
 		return schema.toUpperCase().toString();
 
 	}	
 	
 	public String getFileName() {
+		String result = getValueFromPro("filename");
+		return result == null ? (System.currentTimeMillis() + "") : result;
+	}
+	
+	public static String getExportUser() {
+		String result = getValueFromPro("exportuser");
+		return result;
+	}
+	
+	public static String getDBType() {
+		String result = getValueFromPro("driver");
+		if (result.indexOf("sqlserver") > -1) {
+			return "SQLSERVER";
+		} else if (result.indexOf("mysql") > -1) {
+			return "MYSQL";
+		} else if (result.indexOf("oracle") > -1) {
+			return "ORACLE";
+		} else {
+			return result;
+		}
+		
+	}
+	
+	public static String getValueFromPro(String key) {
 		Properties p = new Properties();
 		String rootPath = System.getProperty("user.dir");
 		// 参数设定
@@ -248,8 +287,106 @@ public class DB {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		String result = p.getProperty("filename");
-		return result == null ? (System.currentTimeMillis() + "") : result;
+		String result = p.getProperty(key);
+		return result;
 	}
 	
+	/**
+	 * Query Demo
+	 * @return  list
+	 */
+	public List<Object> Query() {
+		PreparedStatement psts = null;
+		Connection conns = getConn();
+		ResultSet rss = null;
+		List list = new ArrayList();
+		try {
+			String sqls = "select * from test";
+			psts = conns.prepareStatement(sqls);
+			rss = psts.executeQuery();
+			while (rss.next()) {
+				Timestamp punchtime = rss.getTimestamp("punchtime");
+				int sId = rss.getInt("id");
+				String userName = rss.getString("username");
+				list.add(userName);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(conns, psts, rss);
+		}
+
+		return list;
+	}
+
+   /**
+	 * 
+	 * @param list
+	 * @return
+	 */
+	public boolean insert(List list) {
+		Connection conn = null;
+		PreparedStatement pst = null;
+		Connection conns = null;
+		PreparedStatement psts = null;
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		String sql = "";
+		String sqls = "";
+		try {
+			conn = getConn();
+			conn.setAutoCommit(false);
+			sql = "insert into test (date1,field2,field3,field4,field5,field6) values (to_date(?,'yyyy-MM-dd'),?,?,?,?,?)";
+			pst = conn.prepareStatement(sql);
+			conns = getConn();
+			conns.setAutoCommit(false);
+			sqls = "update dbo.attrecord set verify = 9 where id = ?";
+			psts = conns.prepareStatement(sqls);
+			for (int i = 0; i < list.size(); i++) {
+				Object obj = list.get(i);
+				pst.setString(1, "");
+				pst.setString(2, "");
+				pst.setString(3, "");
+				pst.setString(4, "");
+				pst.setString(5, "");
+				pst.setString(6, "");
+				pst.addBatch();
+				psts.setInt(1, 1);
+				psts.addBatch();
+			}
+			pst.executeBatch();
+			psts.executeBatch();
+			conn.commit();
+			conns.commit();
+		} catch (SQLException e) {
+			try {
+				conn.rollback();
+			} catch (SQLException e1) {
+				e1.printStackTrace();
+			}
+			try {
+				conns.rollback();
+			} catch (SQLException e1) {
+				e1.printStackTrace();
+			}
+
+			e.printStackTrace();
+			return false;
+		} finally {
+			try {
+				conn.setAutoCommit(true);
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			try {
+				conns.setAutoCommit(true);
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			close(conn, pst);
+			close(conns, psts);
+		}
+
+		return true;
+	}
+
 }

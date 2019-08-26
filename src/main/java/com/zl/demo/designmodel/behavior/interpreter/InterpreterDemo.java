@@ -1,8 +1,5 @@
 package com.zl.demo.designmodel.behavior.interpreter;
 
-import java.util.HashMap;
-import java.util.Map;
-
 public class InterpreterDemo {
 	
 	public static void main(String[] args) {

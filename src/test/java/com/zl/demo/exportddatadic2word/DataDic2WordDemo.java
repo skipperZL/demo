@@ -10,6 +10,8 @@ public class DataDic2WordDemo {
 		DB db = new DB(); 
 		WordData word = db.queryWordDataList(db.getConn());
 		DataDic2Word dw =  new DataDic2Word();
-		dw.dataDic2Word("D:/", word);
+		String out = "/home/zl/Documents";
+		String winOut = "D://";
+		dw.dataDic2Word(winOut, word);
 	}
 }

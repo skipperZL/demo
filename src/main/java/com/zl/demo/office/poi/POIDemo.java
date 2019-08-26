@@ -222,7 +222,7 @@ public class POIDemo {
 			rowTable.removeCell(colIndex);
 		}
 		tcPr.addNewGridSpan();
-		tcPr.getGridSpan().setVal(BigInteger.valueOf((long) (toCol - fromCol + 1)));
+		tcPr.getGridSpan().setVal(BigInteger.valueOf(toCol - fromCol + 1));
 	}
     
     private static CTTcPr getTcPr(XWPFTableCell cell) {

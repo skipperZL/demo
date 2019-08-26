@@ -6,8 +6,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import org.apache.commons.lang.SerializationUtils;
-
 import redis.clients.jedis.Jedis;
 
 public class RedisDemo {

@@ -2,8 +2,6 @@ package com.zl.demo.javase;
 
 import java.lang.reflect.Method;
 
-import com.sun.jndi.url.corbaname.corbanameURLContextFactory;
-
 public class AnnotationMainDemo {
 
 	@AnnotationDemo(priority = AnnotationDemo.Priority.MEDIUM, author = "Yashwant", status = AnnotationDemo.Status.STARTED)
@@ -21,7 +19,7 @@ public class AnnotationMainDemo {
 	public static void main(String[] args) {
 		Class annotation = AnnotationMainDemo.class;
 		for (Method method : annotation.getMethods()) {
-			AnnotationDemo todoAnnotation = (AnnotationDemo) method.getAnnotation(AnnotationDemo.class);
+			AnnotationDemo todoAnnotation = method.getAnnotation(AnnotationDemo.class);
 			if (todoAnnotation != null) {
 				System.out.println(" Method Name : " + method.getName());
 				System.out.println(" Author : " + todoAnnotation.author());

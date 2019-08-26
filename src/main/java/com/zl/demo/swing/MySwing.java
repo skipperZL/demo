@@ -10,7 +10,7 @@ public class MySwing {
 
 	public static void main(String[] args) {
 		
-		JComponent p3 = (JComponent)jFrameDemo().getLayeredPane();
+		JComponent p3 = jFrameDemo().getLayeredPane();
 		System.out.println(p3.getComponents().length);
 		//showConfirmDialog(jFrameDemo(), "您确定吗?");
 	}

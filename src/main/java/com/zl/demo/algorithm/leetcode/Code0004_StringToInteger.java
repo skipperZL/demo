@@ -2,9 +2,6 @@ package com.zl.demo.algorithm.leetcode;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
-import com.sun.corba.se.spi.orbutil.fsm.Guard.Result;
-import com.sun.xml.internal.ws.policy.EffectiveAlternativeSelector;
 public class Code0004_StringToInteger {
 	
     public int myAtoi1(String str) {

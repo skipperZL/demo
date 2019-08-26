@@ -28,10 +28,12 @@ public class FruitMenu extends MenuComponent{
 		}
 	}
 	
+	@Override
 	public void add(MenuComponent menu) {
 		list.add(menu);
 	}
 	
+	@Override
 	public void remove(MenuComponent menu) {
 		list.remove(menu);
 	}
